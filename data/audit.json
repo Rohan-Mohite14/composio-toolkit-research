@@ -1,0 +1,200 @@
+{
+  "method": "AI-assisted source review of a purposive sample with one app per assignment category. Two decision-critical checks per app. A separate reviewer has not signed off.",
+  "checks": [
+    [
+      1,
+      "Live API plan",
+      "pass",
+      "pass",
+      "Developer Edition is a development path. Commercial edition and API entitlement determine production access.",
+      "https://help.salesforce.com/s/articleView?id=000005140&language=en_US&type=1"
+    ],
+    [
+      1,
+      "Headless 360 release",
+      "pass",
+      "pass",
+      "The vendor labels Headless 360 beta. Its initial operations concentrate on administration.",
+      "https://developer.salesforce.com/docs/platform/hosted-mcp-servers/guide/headless-360-mcp.html"
+    ],
+    [
+      12,
+      "Private live plan",
+      "partial",
+      "pass",
+      "Intercom explicitly places the private access-token path in a paid workspace. The draft left the paid requirement open.",
+      "https://developers.intercom.com/docs/build-an-integration/learn-more/authentication/setting-up-oauth"
+    ],
+    [
+      12,
+      "Public authentication",
+      "pass",
+      "pass",
+      "Public integrations that access other workspaces must use OAuth.",
+      "https://developers.intercom.com/docs/build-an-integration/learn-more/authentication/setting-up-oauth"
+    ],
+    [
+      21,
+      "MCP install gate",
+      "partial",
+      "pass",
+      "The provider has a remote OAuth server. Its install follows standard Slack app approval and a free developer sandbox is available for testing.",
+      "https://docs.slack.dev/ai/slack-mcp-server/"
+    ],
+    [
+      21,
+      "MCP scope",
+      "pass",
+      "pass",
+      "The documented Slack server can search workspace information and perform Slack actions within authorized access.",
+      "https://docs.slack.dev/ai/slack-mcp-server/"
+    ],
+    [
+      31,
+      "Developer token sunset",
+      "pass",
+      "pass",
+      "The current onboarding flow uses OAuth and project access levels. Older developer-token pages can conflict with the sunset notice.",
+      "https://developers.google.com/google-ads/api/docs/api-policy/developer-token"
+    ],
+    [
+      31,
+      "Production review",
+      "pass",
+      "pass",
+      "Test access is available on enabling the API. A Cloud project needs production access before calling a production account.",
+      "https://developers.google.com/google-ads/api/docs/api-policy/developer-token"
+    ],
+    [
+      46,
+      "Commerce minimum plan",
+      "partial",
+      "pass",
+      "Orders, Inventory and Transactions are documented for Core, Plus, Advanced and legacy Commerce Advanced. Plan generation and endpoint matter.",
+      "https://support.squarespace.com/hc/en-us/articles/236297987-Squarespace-API-keys"
+    ],
+    [
+      46,
+      "Commerce MCP",
+      "pass",
+      "pass",
+      "Squarespace documents a remote MCP with catalog, contacts and order tools.",
+      "https://developers.squarespace.com/mcp/overview"
+    ],
+    [
+      57,
+      "MCP free tier",
+      "pass",
+      "pass",
+      "The web MCP has a recurring free quota. Product-level API pricing needs its own review.",
+      "https://github.com/brightdata/brightdata-mcp"
+    ],
+    [
+      57,
+      "MCP quota detail",
+      "partial",
+      "pass",
+      "The maintainer documents 5,000 monthly free requests, shared by team accounts.",
+      "https://github.com/brightdata/brightdata-mcp"
+    ],
+    [
+      70,
+      "API authentication",
+      "pass",
+      "pass",
+      "Sentry documents Bearer tokens and OAuth 2.0 authorization code.",
+      "https://docs.sentry.io/api/auth/"
+    ],
+    [
+      70,
+      "Organization token permission",
+      "partial",
+      "pass",
+      "The token tutorial names Manager or Admin for its organization-level token flow. The draft mentioned only project membership and scopes.",
+      "https://docs.sentry.io/api/guides/create-auth-token/"
+    ],
+    [
+      74,
+      "REST credential transport",
+      "pass",
+      "pass",
+      "Jira Cloud scripts use account email plus API token in HTTP Basic. Distributed apps can use OAuth authorization code (3LO).",
+      "https://developer.atlassian.com/cloud/jira/platform/basic-auth-for-rest-apis/"
+    ],
+    [
+      74,
+      "MCP authentication",
+      "pass",
+      "pass",
+      "Atlassian documents OAuth 2.1 as primary and organization-controlled token support.",
+      "https://developer.atlassian.com/cloud/rovo-mcp/guides/authentication-and-authorization/"
+    ],
+    [
+      81,
+      "Test and live separation",
+      "pass",
+      "pass",
+      "Stripe test keys use an isolated environment. Activating the account is required before accepting live payments.",
+      "https://docs.stripe.com/get-started/account/set-up"
+    ],
+    [
+      81,
+      "MCP credentials",
+      "partial",
+      "pass",
+      "The MCP guide documents OAuth and an agent API key fallback, separately from credentials for the REST API.",
+      "https://docs.stripe.com/mcp"
+    ],
+    [
+      96,
+      "MCP server availability",
+      "fail",
+      "pass",
+      "Devin publishes a hosted server in addition to the client for third-party MCP servers.",
+      "https://docs.devin.ai/work-with-devin/devin-mcp"
+    ],
+    [
+      96,
+      "Enterprise API provisioning",
+      "pass",
+      "pass",
+      "The v3 permissions guide documents enterprise service users and role-based permissions.",
+      "https://docs.devin.ai/api-reference/v3/overview"
+    ]
+  ],
+  "updates": {
+    "12": {
+      "live": "Paid or metered",
+      "detail": "Private access tokens require a paid Intercom workspace. Public apps use OAuth. Confirm the target plan and region for rollout."
+    },
+    "21": {
+      "detail": "The remote Slack MCP uses OAuth. Workspace app-approval policies can require admin installation. Developers can try it in Slack’s free sandbox."
+    },
+    "31": {
+      "detail": "Use the vendor’s Google Cloud project route. Its documented local Google Ads MCP inherits the API access tier."
+    },
+    "46": {
+      "detail": "For Orders, Inventory and Transactions, the help article lists Core, Plus, Advanced and legacy Commerce Advanced. Check the operation and site plan before requesting the site key."
+    },
+    "57": {
+      "detail": "Bright Data’s web MCP documents 5,000 free monthly requests, shared per team. Product-specific REST and proxy quotas differ."
+    },
+    "70": {
+      "detail": "REST supports OAuth authorization code and Bearer tokens. The organization-token guide requires a Manager or Admin. Prefer a scope limited to the first operation."
+    },
+    "74": {
+      "detail": "REST uses OAuth 2.0 3LO or email and API token in HTTP Basic. The Rovo MCP uses OAuth 2.1 and supports tokens when the organization permits the flow."
+    },
+    "81": {
+      "detail": "Use isolated test keys before live account activation. Stripe MCP separately supports OAuth or a designated agent API key."
+    },
+    "96": {
+      "mcp": "Vendor and MCP client",
+      "detail": "The hosted Devin MCP at https://mcp.devin.ai/mcp uses a Bearer key. Devin can also consume external MCP servers. Enterprise REST permissions depend on the service-user role."
+    },
+    "50": {
+      "auth": "API key, Checkout session secret",
+      "detail": "Indexed vendor documentation describes a seller-portal API key used to obtain an environment-specific checkout session secret. Confirm API entitlement and sandbox or production key provisioning with FanBasis."
+    }
+  }
+}

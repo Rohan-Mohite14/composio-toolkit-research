@@ -1,0 +1,84 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<meta name="description" content="A source-backed toolkit integration study across 100 apps for Composio AI Product Ops.">
+<title>100 apps, one integration pipeline</title>
+<style>
+:root{color-scheme:dark;--bg:#101614;--panel:#17211e;--ink:#eef5ee;--muted:#aabbb0;--line:#34463d;--green:#9ef5b2;--max:1220px}
+*{box-sizing:border-box}body{margin:0;background:var(--bg);color:var(--ink);font:16px/1.55 "DM Sans",system-ui,sans-serif}a{color:var(--green);text-underline-offset:.22em}a:hover{text-decoration-thickness:2px}.wrap{max-width:var(--max);padding-inline:clamp(18px,5vw,54px);margin:auto}header{border-bottom:1px solid var(--line)}nav{display:flex;align-items:center;justify-content:space-between;gap:20px;padding-block:16px}nav span{font-weight:750}nav div{display:flex;gap:20px;flex-wrap:wrap}nav a{font-size:.92rem}h1,h2,h3,p{margin:0}h1{font-size:clamp(3rem,8vw,6.7rem);line-height:.98;letter-spacing:-.07em;max-width:900px;margin:.17em 0 .28em;font-weight:800}h2{font-size:clamp(2rem,5vw,3.45rem);line-height:1.04;letter-spacing:-.045em;margin-bottom:16px}h3{font-size:1.16rem;line-height:1.25;margin-bottom:8px}.hero{padding-block:clamp(36px,8vw,86px) 44px}.overline{color:var(--green);font-size:.82rem;letter-spacing:.11em;text-transform:uppercase;font-weight:800}.lede{max-width:750px;color:var(--ink);font-size:clamp(1.15rem,2.5vw,1.5rem)}.lede strong{color:var(--green)}section{padding-block:42px;border-top:1px solid var(--line)}.cards{display:grid;grid-template-columns:repeat(4,1fr);gap:10px;margin-top:28px}.card,.box{background:var(--panel);border:1px solid var(--line);border-radius:14px;padding:18px}.card b{display:block;color:var(--green);font-size:2.55rem;letter-spacing:-.06em;line-height:1.1}.card span,.muted,small{color:var(--muted)}small{font-size:.85rem;display:block}.split{display:grid;grid-template-columns:1fr 1.1fr;gap:24px}.stack{display:grid;gap:12px}.box p{color:var(--muted);margin:5px 0}table{border-collapse:collapse;width:100%;text-align:left}th{color:var(--green);font-weight:700}th,td{border-bottom:1px solid var(--line);padding:10px 9px;vertical-align:top}td{line-height:1.4}thead{background:var(--panel)}tbody tr:hover{background:#19271f}.bar{width:48px;height:6px;display:inline-flex;background:#314335;border-radius:8px;vertical-align:middle}.bar i{height:6px;background:var(--green);border-radius:8px}.filters{margin:18px 0 10px;display:flex;gap:10px;flex-wrap:wrap}.filters label{display:grid;gap:5px;font-size:.85rem;color:var(--muted)}input,select,button{font:inherit;background:var(--panel);color:var(--ink);border:1px solid var(--line);border-radius:8px;padding:8px 11px;min-height:42px}.scroll{overflow:auto;border:1px solid var(--line);border-radius:12px;margin-top:10px}.scroll:focus{outline:2px solid var(--green)}.inventory{min-width:1120px;table-layout:fixed}.inventory th:nth-child(1){width:17%}.inventory th:nth-child(5){width:16%}.inventory th:nth-child(6){width:20%}.inventory th:last-child{width:10%}.inventory td{font-size:.88rem}.num{color:var(--green)}details summary{cursor:pointer}details[open] p{margin-top:8px}dt{color:var(--green);font-weight:650}dd{margin:0 0 7px}code{color:var(--green);overflow-wrap:anywhere}.links{white-space:normal;line-height:1.7}.score{display:flex;gap:16px;flex-wrap:wrap;margin:16px 0}.score div{flex:1;min-width:170px}.flow{display:grid;grid-template-columns:repeat(4,1fr);gap:10px;margin:18px 0}footer{border-top:1px solid var(--line);padding-block:22px 40px}.section-note{max-width:790px}.skip{position:absolute;left:12px;top:-60px}.skip:focus{top:8px}button:focus-visible,a:focus-visible,input:focus-visible,select:focus-visible,summary:focus-visible{outline:2px solid var(--green);outline-offset:4px}@media(max-width:820px){.cards,.flow{grid-template-columns:repeat(2,1fr)}.split{grid-template-columns:1fr}nav{align-items:start;flex-direction:column;gap:8px}.mobile{display:block}}@media(max-width:400px){.cards{gap:6px}.card{padding:12px}.flow{grid-template-columns:1fr}}
+</style>
+</head>
+<body>
+<a class="skip" href="#matrix">Skip to app matrix</a>
+<header><nav class="wrap"><span>Composio · AI Product Ops</span><div><a href="#findings">Findings</a><a href="#verification">Verification</a><a href="#matrix">App matrix</a><a href="https://github.com/Rohan-Mohite14/composio-toolkit-research">Source repo</a></div></nav></header>
+<main class="wrap">
+<div class="hero">
+<p class="overline">Integration research case study · November 2026</p>
+<h1>100 apps, one integration pipeline</h1>
+<p class="lede"><strong>Getting test credentials is easier than shipping a live connector.</strong> %%TEST_COUNT%% apps have a documented free, trial, or local starting point. %%GATED_COUNT%% have a paid, admin, approval, or sales gate on the analyzed live route.</p>
+<div class="cards">
+<div class="card"><b>%%APP_COUNT%%</b><span>apps across 10 categories</span></div>
+<div class="card"><b>%%AUTH_COUNT%%</b><span>document an OAuth 2.0 route</span></div>
+<div class="card"><b>%%LIVE_COUNT%%</b><span>free or local live routes</span></div>
+<div class="card"><b>%%COVERAGE%%</b><span>apps with a readable source in the retrieval run</span></div>
+</div></div>
+<section id="findings">
+<h2>Build around the access gate</h2>
+<div class="split">
+<div class="stack">
+<div class="box"><h3>Start with scoped reads</h3><p>Prioritize Linear issues, GitHub repository metadata or Notion page reads. Each has a documented free route and a bounded starting operation. Workspace or repository permissions still apply.</p></div>
+<div class="box"><h3>Budget for account setup</h3><p>%%COMMON_GATE%% is the largest recorded live gate. Ads and finance also need approval or activation. Google Ads test access and Stripe sandbox keys enable early prototypes while live access follows a separate path.</p></div>
+<div class="box"><h3>Send focused access requests</h3><p>Ask DealCloud for an API-enabled tenant and its current spec. Ask PitchBook for API contract terms. Resolve the exact Paygent Connect product and docs before attaching NMI capabilities to it.</p></div>
+</div>
+<div><table><thead><tr><th>Category</th><th>Free / local live</th><th>Gated live</th></tr></thead><tbody>%%CATEGORY_ROWS%%</tbody></table><small>One primary live-route label per app. Unconfirmed and limited live-trial routes are outside these two totals. OAuth counts are non-exclusive.</small></div>
+</div></section>
+<section id="process">
+<h2>From assignment to build brief</h2>
+<div class="flow">
+<div class="box"><h3>Discover</h3><p>Read the manifest. Use the Composio SDK tool catalog for candidate matches when reachable.</p></div>
+<div class="box"><h3>Research</h3><p>Codex CLI searches vendor docs, emits a strict JSON brief and checkpoints each app in SQLite.</p></div>
+<div class="box"><h3>Verify</h3><p>A second CLI pass challenges sources and fields. The published run reopened first-pass evidence and checked a ten-app sample separately.</p></div>
+<div class="box"><h3>Publish</h3><p>Compile grades, source coverage and route counts into a standalone page. Specs can be inventoried with a separate command.</p></div>
+</div>
+<p class="section-note muted">The full matrix starts from a frozen AI desk-research draft. Fresh web retrieval returned %%PAGE_COUNT%% readable source URLs. The workspace blocked CLI startup and Composio SDK DNS, so the expanded CLI pass has not completed across all 100. Five earlier pilot briefs include source ledgers, action examples and detailed handoffs. The source repo includes both the live research runner and the reproducible report build.</p>
+</section>
+<section id="verification">
+<h2>What changed after checking the docs</h2>
+<p class="section-note">The source audit checked two specific claims each for ten apps, one per category. A pass requires the named source to support the complete statement. A partial misses a decision-relevant detail. The same rubric was applied to both versions.</p>
+<div class="score"><div class="card"><b>%%AUDIT_BEFORE%% / %%AUDIT_TOTAL%%</b><span>complete claims in the frozen first pass</span></div><div class="card"><b>%%AUDIT_AFTER%% / %%AUDIT_TOTAL%%</b><span>complete claims after source-backed edits</span></div></div>
+<p class="section-note muted">These are scores on the same edited sample. Held-out accuracy is unknown. AI performed the documented source review. Human sign-off and live credential tests are pending. A page retrieval marks source availability and does not score its claims.</p>
+<div class="scroll" tabindex="0" aria-label="Verification checks"><table><thead><tr><th>App</th><th>Check</th><th>First pass</th><th>Reviewed</th><th>Finding</th><th>Source</th></tr></thead><tbody>%%AUDIT_ROWS%%</tbody></table></div>
+</section>
+<section id="matrix">
+<h2>App research matrix</h2>
+<p class="section-note muted">Filter by app, category or live access. Expand a verdict for the blocker, implementation notes and pilot action details.</p>
+<div class="filters"><label>Search<input id="search" type="search" placeholder="App, auth or blocker"></label><label>Category<select id="category"><option value="">All categories</option>%%CATEGORY_OPTIONS%%</select></label><label>Live access<select id="live"><option value="">All access routes</option>%%LIVE_OPTIONS%%</select></label></div>
+<small id="count" aria-live="polite">%%APP_COUNT%% apps</small>
+<div class="scroll" tabindex="0" aria-label="100 app research matrix"><table class="inventory"><thead><tr><th>App</th><th>Credential</th><th>Test access</th><th>Live access</th><th>API and MCP</th><th>Verdict and blocker</th><th>Evidence</th></tr></thead><tbody id="apps">%%APP_ROWS%%</tbody></table></div>
+</section>
+</main><footer><div class="wrap"><a href="https://github.com/Rohan-Mohite14/composio-toolkit-research">Source repo and run instructions</a> · <button id="export" type="button">Download research JSON</button></div></footer>
+<script type="application/json" id="research-data">%%EMBEDDED_DATA%%</script>
+<script>
+const search=document.querySelector('#search'), category=document.querySelector('#category'), live=document.querySelector('#live');
+const rows=[...document.querySelectorAll('#apps tr')];
+const searchable=rows.map(row=>row.textContent.toLowerCase());
+function filter(){
+ const query=search.value.trim().toLowerCase(); let count=0;
+ rows.forEach((row,i)=>{
+  row.hidden=!(searchable[i].includes(query)&&(!category.value||row.dataset.category===category.value)&&(!live.value||row.dataset.live===live.value));
+  if(!row.hidden)count++;
+ });
+ document.querySelector('#count').textContent=count+' '+(count===1?'app':'apps');
+}
+search.addEventListener('input',filter);
+[category,live].forEach(control=>control.addEventListener('change',filter));
+document.querySelector('#export').addEventListener('click',()=>{
+ const url=URL.createObjectURL(new Blob([document.querySelector('#research-data').textContent],{type:'application/json'}));
+ const link=document.createElement('a');link.href=url;link.download='toolkit-research.json';link.click();
+ setTimeout(()=>URL.revokeObjectURL(url),1000);
+});
+</script>
+</body>
+</html>

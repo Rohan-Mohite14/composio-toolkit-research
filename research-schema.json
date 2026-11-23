@@ -1,0 +1,573 @@
+{
+  "type": "object",
+  "additionalProperties": false,
+  "required": [
+    "briefs"
+  ],
+  "properties": {
+    "briefs": {
+      "type": "array",
+      "items": {
+        "type": "object",
+        "additionalProperties": false,
+        "required": [
+          "id",
+          "product",
+          "description",
+          "claims",
+          "integration",
+          "actions",
+          "evidence_ledger"
+        ],
+        "properties": {
+          "id": {
+            "type": "integer"
+          },
+          "product": {
+            "type": "string"
+          },
+          "description": {
+            "type": "string"
+          },
+          "claims": {
+            "type": "object",
+            "additionalProperties": false,
+            "required": [
+              "auth",
+              "test_access",
+              "production_access",
+              "interfaces",
+              "mcp",
+              "buildability"
+            ],
+            "properties": {
+              "auth": {
+                "type": "object",
+                "additionalProperties": false,
+                "required": [
+                  "labels",
+                  "summary",
+                  "evidence"
+                ],
+                "properties": {
+                  "labels": {
+                    "type": "array",
+                    "items": {
+                      "type": "string",
+                      "enum": [
+                        "oauth2",
+                        "api_key",
+                        "personal_token",
+                        "basic",
+                        "client_secret",
+                        "product_token",
+                        "none",
+                        "other"
+                      ]
+                    }
+                  },
+                  "summary": {
+                    "type": "string"
+                  },
+                  "evidence": {
+                    "type": "array",
+                    "items": {
+                      "type": "object",
+                      "additionalProperties": false,
+                      "required": [
+                        "url",
+                        "section",
+                        "support"
+                      ],
+                      "properties": {
+                        "url": {
+                          "type": "string"
+                        },
+                        "section": {
+                          "type": "string"
+                        },
+                        "support": {
+                          "type": "string"
+                        }
+                      }
+                    }
+                  }
+                }
+              },
+              "test_access": {
+                "type": "object",
+                "additionalProperties": false,
+                "required": [
+                  "labels",
+                  "summary",
+                  "evidence"
+                ],
+                "properties": {
+                  "labels": {
+                    "type": "array",
+                    "items": {
+                      "type": "string",
+                      "enum": [
+                        "free_sandbox",
+                        "trial",
+                        "existing_account",
+                        "admin",
+                        "paid",
+                        "local",
+                        "partner"
+                      ]
+                    }
+                  },
+                  "summary": {
+                    "type": "string"
+                  },
+                  "evidence": {
+                    "type": "array",
+                    "items": {
+                      "type": "object",
+                      "additionalProperties": false,
+                      "required": [
+                        "url",
+                        "section",
+                        "support"
+                      ],
+                      "properties": {
+                        "url": {
+                          "type": "string"
+                        },
+                        "section": {
+                          "type": "string"
+                        },
+                        "support": {
+                          "type": "string"
+                        }
+                      }
+                    }
+                  }
+                }
+              },
+              "production_access": {
+                "type": "object",
+                "additionalProperties": false,
+                "required": [
+                  "labels",
+                  "summary",
+                  "evidence"
+                ],
+                "properties": {
+                  "labels": {
+                    "type": "array",
+                    "items": {
+                      "type": "string",
+                      "enum": [
+                        "free_tier",
+                        "limited_live_trial",
+                        "paid",
+                        "admin",
+                        "approval",
+                        "partner",
+                        "local"
+                      ]
+                    }
+                  },
+                  "summary": {
+                    "type": "string"
+                  },
+                  "evidence": {
+                    "type": "array",
+                    "items": {
+                      "type": "object",
+                      "additionalProperties": false,
+                      "required": [
+                        "url",
+                        "section",
+                        "support"
+                      ],
+                      "properties": {
+                        "url": {
+                          "type": "string"
+                        },
+                        "section": {
+                          "type": "string"
+                        },
+                        "support": {
+                          "type": "string"
+                        }
+                      }
+                    }
+                  }
+                }
+              },
+              "interfaces": {
+                "type": "object",
+                "additionalProperties": false,
+                "required": [
+                  "labels",
+                  "summary",
+                  "evidence"
+                ],
+                "properties": {
+                  "labels": {
+                    "type": "array",
+                    "items": {
+                      "type": "string",
+                      "enum": [
+                        "rest",
+                        "graphql",
+                        "http_rpc",
+                        "grpc",
+                        "sdk",
+                        "cli",
+                        "other"
+                      ]
+                    }
+                  },
+                  "summary": {
+                    "type": "string"
+                  },
+                  "evidence": {
+                    "type": "array",
+                    "items": {
+                      "type": "object",
+                      "additionalProperties": false,
+                      "required": [
+                        "url",
+                        "section",
+                        "support"
+                      ],
+                      "properties": {
+                        "url": {
+                          "type": "string"
+                        },
+                        "section": {
+                          "type": "string"
+                        },
+                        "support": {
+                          "type": "string"
+                        }
+                      }
+                    }
+                  }
+                }
+              },
+              "mcp": {
+                "type": "object",
+                "additionalProperties": false,
+                "required": [
+                  "labels",
+                  "summary",
+                  "evidence"
+                ],
+                "properties": {
+                  "labels": {
+                    "type": "array",
+                    "items": {
+                      "type": "string",
+                      "enum": [
+                        "vendor_data",
+                        "vendor_developer",
+                        "vendor_beta",
+                        "community",
+                        "client_only",
+                        "none_confirmed"
+                      ]
+                    }
+                  },
+                  "summary": {
+                    "type": "string"
+                  },
+                  "evidence": {
+                    "type": "array",
+                    "items": {
+                      "type": "object",
+                      "additionalProperties": false,
+                      "required": [
+                        "url",
+                        "section",
+                        "support"
+                      ],
+                      "properties": {
+                        "url": {
+                          "type": "string"
+                        },
+                        "section": {
+                          "type": "string"
+                        },
+                        "support": {
+                          "type": "string"
+                        }
+                      }
+                    }
+                  }
+                }
+              },
+              "buildability": {
+                "type": "object",
+                "additionalProperties": false,
+                "required": [
+                  "labels",
+                  "summary",
+                  "evidence"
+                ],
+                "properties": {
+                  "labels": {
+                    "type": "array",
+                    "items": {
+                      "type": "string",
+                      "enum": [
+                        "wrap_api",
+                        "reuse_mcp",
+                        "wrap_cli",
+                        "sandbox_first",
+                        "needs_access",
+                        "needs_evidence"
+                      ]
+                    }
+                  },
+                  "summary": {
+                    "type": "string"
+                  },
+                  "evidence": {
+                    "type": "array",
+                    "items": {
+                      "type": "object",
+                      "additionalProperties": false,
+                      "required": [
+                        "url",
+                        "section",
+                        "support"
+                      ],
+                      "properties": {
+                        "url": {
+                          "type": "string"
+                        },
+                        "section": {
+                          "type": "string"
+                        },
+                        "support": {
+                          "type": "string"
+                        }
+                      }
+                    }
+                  }
+                }
+              }
+            }
+          },
+          "integration": {
+            "type": "object",
+            "additionalProperties": false,
+            "required": [
+              "credential_setup",
+              "wire_auth",
+              "oauth_flow",
+              "oauth_endpoints",
+              "scope_and_refresh",
+              "test_setup",
+              "live_setup",
+              "distribution_requirements",
+              "base_url_and_version",
+              "resource_families",
+              "api_reference_or_spec",
+              "mcp_endpoint_or_install",
+              "mcp_coverage",
+              "blocker",
+              "blocker_next_step",
+              "vendor",
+              "edition",
+              "region_and_deployment",
+              "credential_identity",
+              "tenant_or_org_id",
+              "minimum_plans_by_route",
+              "operation_inventory",
+              "official_sdks_and_clis",
+              "composio_toolkit",
+              "mcp_auth_status_restrictions",
+              "private_and_public_routes"
+            ],
+            "properties": {
+              "credential_setup": {
+                "type": "string"
+              },
+              "wire_auth": {
+                "type": "string"
+              },
+              "oauth_flow": {
+                "type": "string"
+              },
+              "oauth_endpoints": {
+                "type": "string"
+              },
+              "scope_and_refresh": {
+                "type": "string"
+              },
+              "test_setup": {
+                "type": "string"
+              },
+              "live_setup": {
+                "type": "string"
+              },
+              "distribution_requirements": {
+                "type": "string"
+              },
+              "base_url_and_version": {
+                "type": "string"
+              },
+              "resource_families": {
+                "type": "string"
+              },
+              "api_reference_or_spec": {
+                "type": "string"
+              },
+              "mcp_endpoint_or_install": {
+                "type": "string"
+              },
+              "mcp_coverage": {
+                "type": "string"
+              },
+              "blocker": {
+                "type": "string"
+              },
+              "blocker_next_step": {
+                "type": "string"
+              },
+              "vendor": {
+                "type": "string"
+              },
+              "edition": {
+                "type": "string"
+              },
+              "region_and_deployment": {
+                "type": "string"
+              },
+              "credential_identity": {
+                "type": "string"
+              },
+              "tenant_or_org_id": {
+                "type": "string"
+              },
+              "minimum_plans_by_route": {
+                "type": "string"
+              },
+              "operation_inventory": {
+                "type": "string"
+              },
+              "official_sdks_and_clis": {
+                "type": "string"
+              },
+              "composio_toolkit": {
+                "type": "string"
+              },
+              "mcp_auth_status_restrictions": {
+                "type": "string"
+              },
+              "private_and_public_routes": {
+                "type": "string"
+              }
+            }
+          },
+          "actions": {
+            "type": "array",
+            "items": {
+              "type": "object",
+              "additionalProperties": false,
+              "required": [
+                "intent",
+                "operation",
+                "required_inputs",
+                "outputs",
+                "scopes",
+                "pagination",
+                "side_effect",
+                "source_url",
+                "documented_example"
+              ],
+              "properties": {
+                "intent": {
+                  "type": "string"
+                },
+                "operation": {
+                  "type": "string"
+                },
+                "required_inputs": {
+                  "type": "string"
+                },
+                "outputs": {
+                  "type": "string"
+                },
+                "scopes": {
+                  "type": "string"
+                },
+                "pagination": {
+                  "type": "string"
+                },
+                "side_effect": {
+                  "type": "string"
+                },
+                "source_url": {
+                  "type": "string"
+                },
+                "documented_example": {
+                  "type": "string"
+                }
+              }
+            }
+          },
+          "evidence_ledger": {
+            "type": "array",
+            "items": {
+              "type": "object",
+              "additionalProperties": false,
+              "properties": {
+                "field": {
+                  "type": "string"
+                },
+                "claim": {
+                  "type": "string"
+                },
+                "url": {
+                  "type": "string"
+                },
+                "section": {
+                  "type": "string"
+                },
+                "support": {
+                  "type": "string"
+                },
+                "retrieved_on": {
+                  "type": "string"
+                },
+                "product_environment": {
+                  "type": "string"
+                },
+                "checks": {
+                  "type": "string"
+                },
+                "status": {
+                  "type": "string",
+                  "enum": [
+                    "documented",
+                    "inferred",
+                    "unresolved",
+                    "not_applicable"
+                  ]
+                }
+              },
+              "required": [
+                "field",
+                "claim",
+                "url",
+                "section",
+                "support",
+                "retrieved_on",
+                "product_environment",
+                "checks",
+                "status"
+              ]
+            }
+          }
+        }
+      }
+    }
+  }
+}
