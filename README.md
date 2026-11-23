@@ -29,7 +29,7 @@ For a fetched OpenAPI spec, run `python3 inventory-spec.py FILE --source URL` to
 
 ## Evidence and limits
 
-- The published 100-app run reused the earlier AI research baseline and reopened vendor evidence in batches. Local DNS blocked Composio SDK discovery and the sandbox blocked startup of the Codex CLI. The full fresh CLI pass is pending.
+- The published 100-app matrix reused the earlier AI research baseline and reopened vendor evidence in batches. In the November 24 live attempt, the authenticated Composio catalog lookup passed and the runner denied Codex CLI app server initialization. The fresh CLI run stopped at preflight with zero new briefs. See `data/live-run.json`.
 - `data/audit.json` holds 20 decision-critical checks across ten apps, their first-pass and reviewed judgments, sources, and the reviewed edits. This measures corrections on the checked sample. Held-out accuracy and independent human sign-off are pending.
 - `data/pilot-briefs.json` holds the earlier five expanded briefs with operation examples and claim-level evidence. The other apps use the assignment matrix level of detail.
 - The assignment concerns documented feasibility. No vendor account was opened and no authenticated vendor operation was executed for the published matrix.

@@ -117,7 +117,9 @@ def bar(value, total):
 
 metrics = dict(apps=N, auth=dict(auth), test=dict(test), live=dict(live), retrieved_apps=coverage,
                audit={stage: dict(c) for stage, c in zip(("first","reviewed"), counts)})
-embedded = json.dumps({"metrics": metrics, "apps": rows, "audit": audit, "pilot": list(pilot.values())}, ensure_ascii=False).replace("<","\\u003c")
+live_run = data("live-run.json")
+embedded = json.dumps({"metrics": metrics, "apps": rows, "audit": audit, "pilot": list(pilot.values()),
+                       "live_run": live_run}, ensure_ascii=False).replace("<","\\u003c")
 replacements = {
     "APP_COUNT": str(N), "AUTH_COUNT": str(auth["OAuth 2.0"]), "TEST_COUNT": str(testable), "LIVE_COUNT": str(free_live), "GATED_COUNT": str(gated),
     "COVERAGE": str(coverage), "PAGE_COUNT": str(len(read)), "COMMON_GATE": f'{live[common_gate]} of {N} · {escape(common_gate)}',
@@ -125,6 +127,8 @@ replacements = {
     "LIVE_OPTIONS": "".join(f"<option>{escape(x)}</option>" for x in sorted(live)),
     "APP_ROWS": "\n".join(app_rows()), "AUDIT_ROWS": "\n".join(audit_rows()),
     "AUDIT_BEFORE": str(counts[0]["pass"]), "AUDIT_AFTER": str(counts[1]["pass"]), "AUDIT_TOTAL": str(len(audit["checks"])),
+    "AUDIT_PARTIAL": str(counts[0]["partial"]), "AUDIT_FAIL": str(counts[0]["fail"]),
+    "LIVE_RUN_DETAIL": escape(live_run["detail"]),
     "CATEGORY_ROWS": "".join(f'<tr><td>{escape(c)}</td><td>{bar(f,10)} {f}</td><td>{bar(g,10)} {g}</td></tr>' for c,f,g in category_rows()),
     "EMBEDDED_DATA": embedded
 }
