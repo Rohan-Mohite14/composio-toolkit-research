@@ -18,59 +18,52 @@
 <div class="hero">
 <p class="overline">Integration research case study · November 2026</p>
 <h1>100 apps, one integration pipeline</h1>
-<p class="lede"><strong>Getting test credentials is easier than shipping a live connector.</strong> %%TEST_COUNT%% apps have a documented free, trial, or local starting point. %%GATED_COUNT%% have a paid, admin, approval, or sales gate on the analyzed live route.</p>
+<p class="lede"><strong>The API is rarely the blocker. Access is.</strong> %%FREE%% of %%APP_COUNT%% apps document a free live route. %%TRIAL%% more can be prototyped on a trial or sandbox. %%GATED%% document neither.</p>
 <div class="cards">
-<div class="card"><b>%%APP_COUNT%%</b><span>apps across 10 categories</span></div>
-<div class="card"><b>%%AUTH_COUNT%%</b><span>document an OAuth 2.0 route</span></div>
-<div class="card"><b>%%LIVE_COUNT%%</b><span>free or local live routes</span></div>
-<div class="card"><b>%%COVERAGE%%</b><span>apps with a readable source in the retrieval run</span></div>
+<div class="card"><b>%%VERIFIED%%</b><span>of %%APP_COUNT%% apps passed two agent passes</span></div>
+<div class="card"><b>%%OAUTH%%</b><span>support OAuth 2.0. API keys: %%APIKEY%%</span></div>
+<div class="card"><b>%%VENDOR_MCP%%</b><span>have some vendor MCP, including beta and developer-only</span></div>
+<div class="card"><b>%%H_PCT_BEFORE%%% → %%H_PCT_AFTER%%%</b><span>held-out claims fully correct, first pass to second</span></div>
 </div></div>
 <section id="findings">
-<h2>Build around the access gate</h2>
-<div class="split">
-<div class="stack">
-<div class="box"><h3>Start with scoped reads</h3><p>Prioritize Linear issues, GitHub repository metadata or Notion page reads. Each has a documented free route and a bounded starting operation. Workspace or repository permissions still apply.</p></div>
-<div class="box"><h3>Budget for account setup</h3><p>%%COMMON_GATE%% is the largest recorded live gate. Ads and finance also need approval or activation. Google Ads test access and Stripe sandbox keys enable early prototypes while live access follows a separate path.</p></div>
-<div class="box"><h3>Send focused access requests</h3><p>Ask DealCloud for an API-enabled tenant and its current spec. Ask PitchBook for API contract terms. Resolve the exact Paygent Connect product and docs before attaching NMI capabilities to it.</p></div>
-</div>
-<div><table><thead><tr><th>Category</th><th>Free / local live</th><th>Gated live</th></tr></thead><tbody>%%CATEGORY_ROWS%%</tbody></table><small>One primary live-route label per app. Unconfirmed and limited live-trial routes are outside these two totals. OAuth counts are non-exclusive.</small></div>
-</div></section>
+<h2>Patterns</h2>
+<div class="split"><div class="stack">
+<div class="box"><h3>OAuth leads, keys follow</h3><p>%%OAUTH%% apps support OAuth 2.0 and %%APIKEY%% support an API key. Many support both, so counts overlap.</p></div>
+<div class="box"><h3>%%TOP_GATE%% is the most common live gate</h3><p>Apps naming each gate on at least one live route: %%GATES%%. An app can name several, and some also keep a free route.</p></div>
+<div class="box"><h3>Easy wins</h3><p>Most free live routes: %%BEST%%. Start there.</p></div>
+<div class="box"><h3>Needs outreach or a paid account</h3><p>%%GATED_LIST%%. Support tools are hardest: %%SUPPORT_FREE%% of 10 document a free live route.</p></div>
+</div><div><table><thead><tr><th>Category</th><th>Free live</th><th>Trial or sandbox</th><th>Neither</th></tr></thead><tbody>%%CATEGORY_ROWS%%</tbody></table><small>Computed from agent labels. Test access was the agent's weakest field, so treat the middle column as approximate.</small></div></div>
+</section>
 <section id="process">
-<h2>From assignment to build brief</h2>
+<h2>The agent</h2>
 <div class="flow">
-<div class="box"><h3>Discover</h3><p>Read the manifest. Use the Composio SDK tool catalog for candidate matches when reachable.</p></div>
-<div class="box"><h3>Research</h3><p>Codex CLI searches vendor docs, emits a strict JSON brief and checkpoints each app in SQLite.</p></div>
-<div class="box"><h3>Verify</h3><p>A second CLI pass challenges sources and fields. The published run reopened first-pass evidence and checked a ten-app sample separately.</p></div>
-<div class="box"><h3>Publish</h3><p>Compile grades, source coverage and route counts into a standalone page. Specs can be inventoried with a separate command.</p></div>
+<div class="box"><h3>Discover</h3><p>The Composio SDK searches its tool catalog for each app. Matches are leads only.</p></div>
+<div class="box"><h3>Research</h3><p>Codex CLI searches vendor docs and returns a strict JSON brief. SQLite saves each pass.</p></div>
+<div class="box"><h3>Challenge</h3><p>A second pass re-opens sources and amends claims. A validator rejects missing citations and labels without first-party evidence.</p></div>
+<div class="box"><h3>Check</h3><p>Ten unseen apps are graded against vendor pages. Grades and misses are published below.</p></div>
 </div>
 <div class="split">
-<div class="box"><h3>How the published matrix was built</h3><p>The report compiler combined a frozen AI research draft for all 100 apps, %%PAGE_COUNT%% readable source URLs from fresh retrieval, a ten-app claim audit, and five expanded handoff briefs.</p></div>
-<div class="box"><h3>Where a human is needed</h3><p>A reviewer can open the audit sources and independently score the claims. Tenant admins or vendor contacts are needed to confirm account-specific access. This run used AI for the source audit. Independent human review and live credential testing are pending.</p></div>
+<div class="box"><h3>What happened in the run</h3><p>Passes by model: %%MODELS%%. The run began on gpt-6.1-sol, then moved to gpt-6-luna to cut cost. Saved passes with recorded usage read %%INPUT_M%%M input tokens, %%CACHED_PCT%%% cached. %%FAILS%% failures were logged, including %%TIMEOUTS%% timeouts. Failed apps were retried.</p><p>Apps without a valid second pass (%%MISSING_COUNT%%): %%MISSING%%. Their rows show the first pass.</p></div>
+<div class="box"><h3>Where a human was needed</h3><p>A person started the run, chose the cheaper model and resumed it after the laptop slept. Grading was done by an AI assistant, so independent human review is still pending. No vendor account was opened and no vendor API was called.</p></div>
 </div>
-<div class="box run-proof">
-<h3>Run the 100-app agent</h3>
-<p>From the source repo, use Node.js 22.13+, a signed-in Codex CLI, the Composio SDK and a project API key. Setup is in the README.</p>
-<pre><code>node research.mjs check &amp;&amp; node research.mjs run --mode composio --ids all --workers 2 --run full</code></pre>
-<p><strong>Latest live attempt · 24 November 2026.</strong> %%LIVE_RUN_DETAIL%%</p>
-<a class="text-link" href="https://github.com/Rohan-Mohite14/composio-toolkit-research#run-the-research-agent">Open the runner and setup instructions</a>
-</div>
+<div class="box run-proof"><h3>Run it</h3><p>Node.js 22.13+, a signed-in Codex CLI, the Composio SDK and a project API key.</p>
+<pre><code>node research.mjs check &amp;&amp; node research.mjs run --mode composio --ids all --workers 4 --run full</code></pre>
+<p>Reuse the run name to resume. If the Codex plan limit is hit, the runner waits and retries the same step.</p>
+<a class="text-link" href="https://github.com/Rohan-Mohite14/composio-toolkit-research#run-the-research-agent">Runner and setup instructions</a></div>
 </section>
 <section id="verification">
-<h2>What changed after checking the docs</h2>
-<p class="section-note">The source audit checked two specific claims each for ten apps, one per category. A pass requires the named source to support the complete statement. A partial misses a decision-relevant detail. The same rubric was applied to both versions.</p>
-<div class="score"><div class="card"><b>%%AUDIT_BEFORE%% / %%AUDIT_TOTAL%%</b><span>complete claims in the frozen first pass</span></div><div class="card"><b>%%AUDIT_AFTER%% / %%AUDIT_TOTAL%%</b><span>complete claims after source-backed edits</span></div></div>
-<p class="section-note">The first pass had %%AUDIT_PARTIAL%% partial claims and %%AUDIT_FAIL%% wrong claim. For example, the draft only identified Devin’s ability to consume MCP servers. The vendor docs also confirm a hosted Devin MCP server. Intercom’s docs also clarified the paid workspace requirement for private access tokens. <a href="https://docs.devin.ai/work-with-devin/devin-mcp">Devin docs</a> · <a href="https://developers.intercom.com/docs/build-an-integration/learn-more/authentication/setting-up-oauth">Intercom docs</a></p>
-<p class="section-note muted">The revised score comes from rechecking the same claims after edits. Held-out accuracy is unknown. Source retrieval measures page availability.</p>
-<details class="verification-detail"><summary>See all %%AUDIT_TOTAL%% checks, scores and sources</summary>
-<div class="scroll" tabindex="0" aria-label="Verification checks"><table><thead><tr><th>App</th><th>Check</th><th>First pass</th><th>Reviewed</th><th>Finding</th><th>Source</th></tr></thead><tbody>%%AUDIT_ROWS%%</tbody></table></div>
-</details>
+<h2>How accurate is it?</h2>
+<div class="score"><div class="card"><b>%%H_BEFORE%% / %%H%%</b><span>claims fully correct, first pass</span></div><div class="card"><b>%%H_AFTER%% / %%H%%</b><span>claims fully correct, second pass</span></div></div>
+<div class="split"><div><p class="section-note">%%METHOD%%</p><p class="section-note">After the second pass, %%H_FAIL%% claims were wrong and %%H_PARTIAL%% partial. The agent missed Harvest's official MCP server, FanBasis's MCP beta and Telegram's test environment. Corrections found here were applied to the matrix and do not change the scores.</p><p class="section-note muted">Ten apps is a small sample, so the score is indicative. The second pass changed labels on these fields (number of apps): %%CHANGED%%. An earlier audit moved %%OLD%%, on claims that were edited and then rechecked. It is not an accuracy estimate.</p></div>
+<table><thead><tr><th>Claim</th><th>First pass</th><th>Second pass</th></tr></thead><tbody>%%BY_FIELD%%</tbody></table></div>
+<details class="verification-detail"><summary>See all %%H%% held-out checks</summary><div class="scroll" tabindex="0" aria-label="Held-out checks"><table><thead><tr><th>App</th><th>Claim</th><th>First</th><th>Second</th><th>Finding</th><th>Source</th></tr></thead><tbody>%%AUDIT_ROWS%%</tbody></table></div></details>
 </section>
 <section id="matrix">
 <h2>App research matrix</h2>
-<p class="section-note muted">Filter by app, category or live access. Expand a verdict for the blocker, implementation notes and pilot action details.</p>
-<div class="filters"><label>Search<input id="search" type="search" placeholder="App, auth or blocker"></label><label>Category<select id="category"><option value="">All categories</option>%%CATEGORY_OPTIONS%%</select></label><label>Live access<select id="live"><option value="">All access routes</option>%%LIVE_OPTIONS%%</select></label></div>
+<p class="section-note muted">Labels first. Open any cell for the detail.</p>
+<div class="filters"><label>Search<input id="search" type="search" placeholder="App, auth or blocker"></label><label>Category<select id="category"><option value="">All categories</option>%%CATEGORY_OPTIONS%%</select></label><label>Access<select id="live"><option value="">All access routes</option>%%LIVE_OPTIONS%%</select></label></div>
 <small id="count" aria-live="polite">%%APP_COUNT%% apps</small>
-<div class="scroll" tabindex="0" aria-label="100 app research matrix"><table class="inventory"><thead><tr><th>App</th><th>Credential</th><th>Test access</th><th>Live access</th><th>API and MCP</th><th>Verdict and blocker</th><th>Evidence</th></tr></thead><tbody id="apps">%%APP_ROWS%%</tbody></table></div>
+<div class="scroll" tabindex="0" aria-label="100 app research matrix"><table class="inventory"><thead><tr><th>App</th><th>Auth</th><th>Getting access</th><th>Live gates</th><th>API and MCP</th><th>Verdict and blocker</th><th>Evidence</th></tr></thead><tbody id="apps">%%APP_ROWS%%</tbody></table></div>
 </section>
 </main><footer><div class="wrap"><a href="https://github.com/Rohan-Mohite14/composio-toolkit-research">Source repo and run instructions</a> · <button id="export" type="button">Download research JSON</button></div></footer>
 <script type="application/json" id="research-data">%%EMBEDDED_DATA%%</script>

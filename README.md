@@ -10,7 +10,7 @@ Requires Python 3.10 or later.
 python3 compile-case-study.py
 ```
 
-The build joins the fixed assignment manifest, frozen AI desk-research baseline, fresh page retrieval metadata, explicit source-review outcomes and five detailed pilot briefs. It validates complete ID coverage and recomputes the category counts and score from the data. Its inputs and output are checked in. A page retrieval establishes source availability. Audit records represent specific substantive checks.
+The build joins the manifest, the exported agent run (`data/agent-run.json`) and the held-out audit (`data/heldout-audit.json`), checks that all 100 IDs are covered, and recomputes every count and score. To refresh the export, run `python3 export-run.py PATH_TO_SQLITE RUN_NAME`.
 
 ## Run the research agent
 
@@ -19,7 +19,7 @@ Use Node.js 22.13+ and sign in to the Codex CLI with `codex login`. Set `CODEX_B
 ```sh
 npm install --no-save --no-package-lock @composio/core @modelcontextprotocol/sdk undici@6
 node research.mjs check
-node research.mjs run --mode composio --ids all --workers 2 --run full
+node research.mjs run --mode composio --ids all --workers 4 --run full
 node research.mjs report --run full --output runs/full
 ```
 
@@ -29,7 +29,8 @@ For a fetched OpenAPI spec, run `python3 inventory-spec.py FILE --source URL` to
 
 ## Evidence and limits
 
-- The published 100-app matrix reused the earlier AI research baseline and reopened vendor evidence in batches. In the November 24 live attempt, the authenticated Composio catalog lookup passed and the runner denied Codex CLI app server initialization. The fresh CLI run stopped at preflight with zero new briefs. See `data/live-run.json`.
-- `data/audit.json` holds 20 decision-critical checks across ten apps, their first-pass and reviewed judgments, sources, and the reviewed edits. This measures corrections on the checked sample. Held-out accuracy and independent human sign-off are pending.
-- `data/pilot-briefs.json` holds the earlier five expanded briefs with operation examples and claim-level evidence. The other apps use the assignment matrix level of detail.
-- The assignment concerns documented feasibility. No vendor account was opened and no authenticated vendor operation was executed for the published matrix.
+- `data/agent-run.json` holds both passes for each app, with the model used and logged failures. Rows without a valid second pass show the first pass and are named on the page.
+- `data/heldout-audit.json` holds 40 claim checks on ten apps outside the pilot and earlier audit, graded by an AI assistant against vendor pages. Independent human review is pending.
+- `data/audit.json` and `data/pilot-briefs.json` come from earlier tuning. They are not accuracy estimates.
+- Default model is `gpt-6-luna` at low effort. Override it with `CODEX_MODEL`. If the plan limit is hit, the runner waits 15 minutes and retries.
+- No vendor account was opened and no authenticated vendor operation was executed.

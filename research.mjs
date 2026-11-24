@@ -36,6 +36,10 @@ const instructions = await readFile(new URL("./research-instructions.txt",import
 const fieldNames = Object.keys(singleBrief.properties.claims.properties);
 const legacySchema = await readJson(new URL("./research-schema-v1.json",import.meta.url));
 const stages = ["first","verified"];
+// Plan limits reset on their own, so wait and retry the same stage instead of recording a failure.
+const isUsageLimit = message => /usage.limit|out of credits|insufficient_quota|quota exceeded|credit balance/i.test(message);
+const limitWaitMs = Number(process.env.LIMIT_WAIT_MS) || 900_000;
+const model = process.env.CODEX_MODEL || "gpt-6-luna";
 function matchesSchema(value, spec, path = "brief") {
   if (spec.enum && !spec.enum.includes(value)) throw Error(path + " has an unsupported label");
   if (spec.type === "string" && typeof value !== "string") throw Error(path + " must be text");
@@ -70,10 +74,8 @@ function firstParty(rawUrl, domains) {
 function validate(brief, app, stage, legacy=false) {
   matchesSchema(brief,legacy ? legacySchema.properties.briefs.items : singleBrief);
   const notices = [];
-  const citationIssue=message=>{
-    if (stage==="verified") throw Error(message);
-    notices.push(message);
-  };
+  const citationIssues=[];
+  const citationIssue=message=>{citationIssues.push(message);notices.push(message);};
   if (!legacy) {
     const fields = new Set(["product","description",
       ...Object.keys(brief.claims).map(k=>"claims."+k),
@@ -92,6 +94,7 @@ function validate(brief, app, stage, legacy=false) {
     }
     const missing=[...fields].filter(k=>!covered.has(k));
     if (missing.length) citationIssue("Missing ledger coverage: "+missing.join(", "));
+    if (stage==="verified" && citationIssues.length) throw Error(citationIssues.join("; "));
   }
   if (brief.id !== app.id) throw Error("Mismatched app ID "+brief.id);
   if (!brief.product.trim() || !brief.description.trim()) throw Error("Missing product identity");
@@ -159,7 +162,7 @@ async function codexExec(dir,args,timeout) {
   delete env.COMPOSIO_API_KEY;
   delete env.OPENAI_API_KEY;
   delete env.CODEX_API_KEY;
-  const invocation=exec(codexPath(),["--search","--ask-for-approval","never","-c","log_dir="+JSON.stringify(dir),"exec",
+  const invocation=exec(codexPath(),["--search","--ask-for-approval","never","-c","model="+JSON.stringify(model),"-c","model_reasoning_effort=\"low\"","-c","log_dir="+JSON.stringify(dir),"exec",
     "--json","--ephemeral","--skip-git-repo-check","--sandbox","read-only",...args.slice(0,-1),"-"],
     {cwd:dir,env,timeout,maxBuffer:24_000_000});
   invocation.child.stdin?.on("error",()=>{});
@@ -199,15 +202,21 @@ async function codex(app,stage,first,discovery,correction) {
     const output=join(dir,"brief.json");
     const schemaPath=join(dir,"schema.json");
     await writeFile(schemaPath,JSON.stringify(singleBrief));
+    const ledgerFields=["product","description",...fieldNames.map(k=>"claims."+k),
+      ...Object.keys(singleBrief.properties.integration.properties).map(k=>"integration."+k)];
+    const actionKeys=Object.keys(singleBrief.properties.actions.items.properties).filter(k=>k!=="source_url");
+    const ledgerRule="evidence_ledger.field must contain only these exact names, comma-separated; together the rows must cover every one: "+
+      ledgerFields.join(", ")+". Also cover actions.N.KEY for every returned action index N and each KEY of: "+actionKeys.join(", ")+
+      ". No other names: product and description take no prefix, and claims.product does not exist. If correction is present, fix every listed problem and keep the rest of previousDraft.";
     const context={app,discovery,firstPass:first ?? null,correction};
     const phase=stage==="first"
       ? "Use web search to read first-party vendor sources and write a first-pass brief."
       : "Audit the first pass independently. Search specifically for access, auth scope, product identity and MCP contradictions. Open the original sources, and confirm or amend each claim. Explain remaining gaps. Check operation names and scopes in the API reference.";
-    const prompt=instructions+"\nComposio catalog matches are research leads only. An empty result does not establish absence of an API or MCP server.\n"+phase+"\n"+JSON.stringify(context);
+    const prompt=instructions+"\nComposio catalog matches are research leads only. An empty result does not establish absence of an API or MCP server.\n"+phase+"\n"+ledgerRule+"\n"+JSON.stringify(context);
     const stdout=await codexExec(dir,["--output-schema",schemaPath,"--output-last-message",output,prompt],900_000);
     const events=parseEvents(stdout);
     const searches=events.filter(e=>e.type==="item.completed"&&e.item?.type==="web_search").map(e=>e.item);
-    return {brief:await readJson(output),trace:{provider:"Codex CLI",searches,discovery}};
+    return {brief:await readJson(output),trace:{provider:"Codex CLI",model,effort:"low",usage:events.filter(e=>e.type==="turn.completed").map(e=>e.usage),searches,discovery}};
   } finally {await rm(dir,{recursive:true,force:true});}
 }
 
@@ -316,6 +325,12 @@ async function run(db,apps) {
               break;
             }
             catch(error) {
+              if(isUsageLimit(error.message)) {
+                console.error("Usage limit at "+app.id+" "+stage+". Finished stages are saved. Retrying in 15 minutes. "+error.message);
+                await new Promise(resolve=>setTimeout(resolve,limitWaitMs));
+                attempt--;
+                continue;
+              }
               if(attempt>=3 || !/429|502|503|504|connection reset|temporarily unavailable|stream disconnected/i.test(error.message)) throw error;
               console.error("Retrying "+app.id+" "+stage+" after transient failure ("+attempt+"/3)");
               await new Promise(resolve=>setTimeout(resolve,5000*attempt));

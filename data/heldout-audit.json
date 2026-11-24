@@ -1,0 +1,407 @@
+{
+ "method": "One app per category, random seed 20261125, drawn from the 85 apps not used in the pilot or the earlier audit. Four claims each, graded against vendor pages by an AI assistant after the run. Partial covers a wrong label, an unsupported detail or a decision-relevant omission.",
+ "checks": [
+  [
+   9,
+   "auth",
+   "pass",
+   "pass",
+   "API key plus email, or OAuth after registration.",
+   "https://developer.copper.com/introduction/authentication.html"
+  ],
+  [
+   9,
+   "test_access",
+   "partial",
+   "pass",
+   "Docs say the API is available on trial. First pass said trial API access was undocumented.",
+   "https://support.copper.com/en/articles/8823462-api-docs-and-tips"
+  ],
+  [
+   9,
+   "production_access",
+   "partial",
+   "pass",
+   "First pass omitted the trial plan from API-enabled plans.",
+   "https://support.copper.com/en/articles/8823462-api-docs-and-tips"
+  ],
+  [
+   9,
+   "mcp",
+   "pass",
+   "pass",
+   "Vendor MCP beta, read-only, Claude only, early access.",
+   "https://www.copper.com/mcp"
+  ],
+  [
+   11,
+   "auth",
+   "pass",
+   "pass",
+   "OAuth supported, API tokens deprecated.",
+   "https://developer.zendesk.com/api-reference/introduction/security-and-auth/"
+  ],
+  [
+   11,
+   "test_access",
+   "pass",
+   "pass",
+   "Free 14-day trial documented.",
+   "https://developer.zendesk.com/documentation/api-basics/getting-started/getting-a-trial-or-sponsored-account-for-development/"
+  ],
+  [
+   11,
+   "production_access",
+   "pass",
+   "pass",
+   "Multi-customer distribution requires global OAuth.",
+   "https://developer.zendesk.com/api-reference/introduction/security-and-auth/"
+  ],
+  [
+   11,
+   "mcp",
+   "pass",
+   "pass",
+   "Zendesk Bridge MCP server is in an early access program.",
+   "https://support.zendesk.com/hc/en-us/articles/11458059060250-Zendesk-Bridge-FAQ-EAP"
+  ],
+  [
+   27,
+   "auth",
+   "pass",
+   "pass",
+   "Bot token in URL path.",
+   "https://core.telegram.org/bots/api"
+  ],
+  [
+   27,
+   "test_access",
+   "fail",
+   "fail",
+   "Both passes said no separate sandbox. Telegram documents a dedicated test environment.",
+   "https://core.telegram.org/bots/features"
+  ],
+  [
+   27,
+   "production_access",
+   "pass",
+   "pass",
+   "No paid or approval gate in the docs.",
+   "https://core.telegram.org/bots/api"
+  ],
+  [
+   27,
+   "mcp",
+   "partial",
+   "partial",
+   "Community MCP is right. The client_only label is wrong because it is a server.",
+   "https://core.telegram.org/bots/api"
+  ],
+  [
+   39,
+   "auth",
+   "pass",
+   "pass",
+   "OAuth code flow with Threads app ID and secret.",
+   "https://developers.facebook.com/docs/threads/get-started/get-access-tokens-and-permissions"
+  ],
+  [
+   39,
+   "test_access",
+   "pass",
+   "pass",
+   "Testers can grant permissions at any time.",
+   "https://developers.facebook.com/docs/threads/get-started"
+  ],
+  [
+   39,
+   "production_access",
+   "pass",
+   "pass",
+   "Non-role users need App Review and a published app.",
+   "https://developers.facebook.com/docs/threads/get-started"
+  ],
+  [
+   39,
+   "mcp",
+   "pass",
+   "pass",
+   "Meta DevTools MCP is developer-facing. No Threads data MCP found.",
+   "https://developers.facebook.com/documentation/mcp"
+  ],
+  [
+   50,
+   "auth",
+   "partial",
+   "partial",
+   "x-api-key is right for checkout. Both left general API authentication open though an API reference exists.",
+   "https://apidocs.fan/"
+  ],
+  [
+   50,
+   "test_access",
+   "partial",
+   "partial",
+   "Sandbox host and sandbox keys are documented. Both left key issuance open.",
+   "https://demo.embedded.fanbasis.io/docs/checkout-session-secret"
+  ],
+  [
+   50,
+   "production_access",
+   "partial",
+   "partial",
+   "The paid label has no source.",
+   "https://demo.embedded.fanbasis.io/docs/checkout-session-secret"
+  ],
+  [
+   50,
+   "mcp",
+   "fail",
+   "fail",
+   "Vendor lists an MCP beta. Both passes missed it. Product is renamed Commas.",
+   "https://www.fanbasis.com/llms.txt"
+  ],
+  [
+   54,
+   "auth",
+   "partial",
+   "pass",
+   "First pass said apiTokenName is required. Docs say optional.",
+   "https://docs.mrscraper.com/docs/api/authentication"
+  ],
+  [
+   54,
+   "test_access",
+   "partial",
+   "pass",
+   "First pass labelled live quota a sandbox and stated one of two conflicting quotas.",
+   "https://docs.mrscraper.com/docs/getting-started/billing"
+  ],
+  [
+   54,
+   "production_access",
+   "pass",
+   "pass",
+   "Free, Pro and Enterprise tiers.",
+   "https://docs.mrscraper.com/docs/getting-started/billing"
+  ],
+  [
+   54,
+   "mcp",
+   "pass",
+   "pass",
+   "Hosted MCP with OAuth 2.1.",
+   "https://docs.mrscraper.com/docs/getting-started/mcp-server"
+  ],
+  [
+   61,
+   "auth",
+   "partial",
+   "pass",
+   "First pass added an API key label the docs do not support.",
+   "https://docs.github.com/en/rest/authentication/authenticating-to-the-rest-api"
+  ],
+  [
+   61,
+   "test_access",
+   "pass",
+   "pass",
+   "No dedicated sandbox. Use an owned repository.",
+   "https://docs.github.com/en/rest/authentication/authenticating-to-the-rest-api"
+  ],
+  [
+   61,
+   "production_access",
+   "pass",
+   "pass",
+   "Public reads are free. Private access needs authorization.",
+   "https://docs.github.com/en/rest/authentication/authenticating-to-the-rest-api"
+  ],
+  [
+   61,
+   "mcp",
+   "partial",
+   "pass",
+   "First pass listed vendor MCP and none_confirmed together.",
+   "https://github.com/github/github-mcp-server"
+  ],
+  [
+   80,
+   "auth",
+   "pass",
+   "pass",
+   "Personal access token or OAuth 2.",
+   "https://help.getharvest.com/api-v2/authentication-api/authentication/authentication/"
+  ],
+  [
+   80,
+   "test_access",
+   "partial",
+   "pass",
+   "First pass labelled the live account a free sandbox.",
+   "https://support.getharvest.com/hc/en-us/articles/360048180732-The-Harvest-API"
+  ],
+  [
+   80,
+   "production_access",
+   "pass",
+   "pass",
+   "API included on free and trial accounts.",
+   "https://support.getharvest.com/hc/en-us/articles/360048180732-The-Harvest-API"
+  ],
+  [
+   80,
+   "mcp",
+   "fail",
+   "fail",
+   "Both said no vendor MCP. Harvest has an official MCP server.",
+   "https://support.getharvest.com/hc/en-us/articles/46293697226381-Harvest-MCP"
+  ],
+  [
+   89,
+   "auth",
+   "pass",
+   "pass",
+   "OAuth 2.0 with client ID and secret.",
+   "https://docs.ramp.com/llms.txt"
+  ],
+  [
+   89,
+   "test_access",
+   "pass",
+   "pass",
+   "Sandbox by request form, about one minute.",
+   "https://support.ramp.com/accessing-the-developer-api/"
+  ],
+  [
+   89,
+   "production_access",
+   "partial",
+   "partial",
+   "Admin and partner gates are right. The paid label omits the $0 plan; plan-level API entitlement not confirmed.",
+   "https://ramp.com/pricing"
+  ],
+  [
+   89,
+   "mcp",
+   "pass",
+   "pass",
+   "Hosted MCP at mcp.ramp.com.",
+   "https://docs.ramp.com/llms-guides/ramp-mcp.txt"
+  ],
+  [
+   93,
+   "auth",
+   "pass",
+   "pass",
+   "User API key or OAuth app.",
+   "https://developers.fathom.ai/quickstart"
+  ],
+  [
+   93,
+   "test_access",
+   "partial",
+   "partial",
+   "Free account access is right. The free_sandbox label is wrong.",
+   "https://developers.fathom.ai/faq"
+  ],
+  [
+   93,
+   "production_access",
+   "pass",
+   "pass",
+   "API included on all plans.",
+   "https://developers.fathom.ai/faq"
+  ],
+  [
+   93,
+   "mcp",
+   "pass",
+   "pass",
+   "Official MCP server.",
+   "https://developers.fathom.ai/mcp-docs"
+  ]
+ ],
+ "updates": {
+  "27": {
+   "test_access": {
+    "labels": [
+     "existing_account",
+     "free_sandbox"
+    ],
+    "summary": "Telegram account with @BotFather. A dedicated test environment is documented.",
+    "urls": [
+     "https://core.telegram.org/bots/features"
+    ]
+   },
+   "mcp": {
+    "labels": [
+     "community"
+    ],
+    "summary": "Community servers only. No Telegram-maintained server found."
+   }
+  },
+  "50": {
+   "test_access": {
+    "labels": [
+     "free_sandbox",
+     "existing_account"
+    ],
+    "summary": "Sandbox host and sandbox API keys documented. Account eligibility unconfirmed.",
+    "urls": [
+     "https://demo.embedded.fanbasis.io/docs/checkout-session-secret"
+    ]
+   },
+   "production_access": {
+    "labels": [],
+    "summary": "Production API documented. Minimum plan unconfirmed."
+   },
+   "mcp": {
+    "labels": [
+     "vendor_beta"
+    ],
+    "summary": "Vendor lists an MCP beta under its new name, Commas.",
+    "urls": [
+     "https://www.fanbasis.com/llms.txt"
+    ]
+   }
+  },
+  "80": {
+   "mcp": {
+    "labels": [
+     "vendor_data",
+     "community"
+    ],
+    "summary": "Official Harvest remote MCP at api.harvestapp.com/mcp, plus community servers.",
+    "urls": [
+     "https://support.getharvest.com/hc/en-us/articles/46293697226381-Harvest-MCP"
+    ]
+   }
+  },
+  "89": {
+   "production_access": {
+    "labels": [
+     "admin",
+     "approval",
+     "partner"
+    ],
+    "summary": "Admin-created app for own business. Public distribution needs partner and app approval. A $0 Ramp plan exists; plan-level API entitlement unconfirmed.",
+    "urls": [
+     "https://support.ramp.com/accessing-the-developer-api/",
+     "https://ramp.com/pricing"
+    ]
+   }
+  },
+  "93": {
+   "test_access": {
+    "labels": [
+     "existing_account"
+    ],
+    "summary": "Free account. No separate sandbox.",
+    "urls": [
+     "https://developers.fathom.ai/faq"
+    ]
+   }
+  }
+ }
+}
