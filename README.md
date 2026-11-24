@@ -2,6 +2,15 @@
 
 A 100-app integration research case study for the AI Product Ops take-home. View the [single-page case study](https://rohan-mohite14.github.io/composio-toolkit-research/) or open `index.html` locally. It includes all assignment rows, their source links, a searchable matrix, and the accuracy audit. The page embeds machine-readable results and offers a JSON download.
 
+## What the page shows
+
+**Live page:** https://rohan-mohite14.github.io/composio-toolkit-research/
+
+- **Findings:** 49 of 100 apps document a free live route, 34 have only a trial or sandbox, and 17 document neither. OAuth 2.0 is supported by 76 and API keys by 57. Paid access is the most common live gate (72 apps).
+- **App matrix:** all 100 apps with a one-line description, auth, access, API surface and MCP, buildability, main blocker and source links. Search it or filter by category and access route.
+- **Agent:** how the run worked, which models it used and where it failed. 98 apps passed two passes. Podio and Paygent Connect NMI show the first pass only.
+- **Verification:** 40 held-out claims on ten apps. Fully correct claims went from 24/40 (60%) on the first pass to 31/40 (78%) on the second. Grading was done by an AI assistant, and independent human review is pending.
+
 ## Rebuild the published artifact
 
 Requires Python 3.10 or later.
